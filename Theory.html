@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>reinforcement_learning</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<p><style type="text/css">
+td {
+	text-align: center;
+	width: 40px;
+}
+tr {
+	height: 40px;
+}</p>
+<p></style></p>
+<blockquote>
+<blockquote>
+<p>Imagine playing a new game whose rules you don't know; after a hundred or so moves, your opponent announces, “You lose”.
+‐
+Russell and Norvig: Artificial Intelligence: A Modern Approach</p>
+</blockquote>
+</blockquote>
+<h2>Reinforcement</h2>
+<p>In behavioral psychology, reinforcement is a consequence that will strengthen an organism's future behavior whenever that behavior is preceded by a specific antecedent stimulus.</p>
+<h2>Learning</h2>
+<p>Learning is the act of acquiring new, or modifying and reinforcing, existing knowledge, behaviors, skills, values, or preferences and may involve synthesizing different types of information.</p>
+<h1>Reinforcement Learning</h1>
+<p>When I want someone to learn something, I give them something to read or I tell them how to perform some list of actions to reach a goal.</p>
+<p>In reinforcement learning (RL), we try to adjust your behaviour by either rewarding or punishing you after you’ve performed some list of actions and leave it up to you to reevaluate what to change.</p>
+<h2>Examples, examples, examples</h2>
+<p>If we consider some random puzzle X, which is in a state Si. What we want to do, is manipulate the problem until we reach a state Sn that ends that puzzle.  
+</p>
+<p>Let's take an often used example from Russel &amp; Norvig's &quot;Artificial Intelligence: A Modern Approach&quot;, a book that is worth having. </p>
+<p>The following 'maze' has a width of 4 squares and a height of 3. (0,0) is S<sub>0</sub>. Our agent always starts in that position. (1,1) cannot be passed through. (3,2) is our &quot;positive&quot; endstate and (3,1) our &quot;negative&quot; endstate.</p>
+<p>Reaching an endstate, ends our problem and gives the agent either a positive reinforcement of 1 or a negative reinforcement that equals -1.</p>
+<table>
+<tr>
+<td></td><td></td><td></td><td>+1</td>
+</tr>
+<tr>
+<td></td><td style="background-color:black;"></td><td></td><td>-1</td>
+</tr>
+<tr>
+<td>&#9786;</td><td></td><td></td><td></td>
+</tr>
+</table>
+<p>Our valiant agent does not see what we see. It does not know this world, it does not have to. It only knows where it is and it knows what actions it can perform to transition out of this state. </p>
+<p>So from S<sub>0</sub> or S(0,0) it can either move up, or down. In our example we want to encourage our agent to learn that a shorter path is better than the long way around. So let's make the cost of an action 0.04.</p>
+<p>The idea is that our agent evaluates a state according to it's Reward-to-go; Reward from that state onwards. So <em>&mu;(3,2) = 1</em> and <em>&mu;(3,1) = -1</em>. If we consider S(2,2) and move right, the transition cost with the positive reinforcement will result in <em>&mu;(2,2) = 0.96</em>. So there is an expected reward  when we for right from S(2,2).</p>
+<p>If there is nothing we know, all we can do is move around.
+From S<sub>0</sub> we perform the following 'random' set of actions: &uArr; &uArr; &rArr; &rArr; &rArr;</p>
+<p>Our policy (which is conincidentally our optimal policy) will be rewarded with a utility of <em>1-5*0.04</em>. Now, we want to propagate back over our actions where we observe the following <em>actual</em> utilities which directly correspond to the Reward-to-go of that state in this trial:</p>
+<p><em>&mu;(3,2) = 1</em> <br>
+<em>&mu;(2,2) = 0.96</em> <br> 
+<em>&mu;(2,2) = 0.92</em> <br>
+<em>&mu;(2,2) = 0.88</em> <br>
+<em>&mu;(2,2) = 0.84</em> <br>
+<em>&mu;(0,0) = 0.80</em> <br></p>
+<p>Because we do not want to overfit to the data, we introduce a learning parameter. &sigma; = 0.1 and use that to adjust the utilities of the states.</p>
+<table>
+<tr>
+<td>0.088</td><td>0.092</td><td>0.096</td><td>1</td>
+</tr>
+<tr>
+<td>0.084</td><td style="background-color:black;"></td><td>0</td><td>-1</td>
+</tr>
+<tr>
+<td>0.080</td><td>0</td><td>0</td><td>0</td>
+</tr>
+</table>
+<p>So now we have evaluated our actions. And if we would be greedy and restart from S(0,0), we would see <em>&mu;(S(1,0)) &gt; &mu;(S(0,1))</em> and choose to go &uArr;. We call this <em>exploitation</em>. Exploit what we know.</p>
+<p>But we don't want our agent to be satisfied too soon. There might be more in the world, heck, we don't know anything about the world! We introduce an exploration rate <em>&gamma; = 0.9</em>. Which means that in 90% of the cases, we do not exploit, but we explore and randomly try one of the possible actions. It is advisable to start with a very exploritory agent, to just try, fail and learn. Our exploration rate can be brought down to near zero when we feel that our estimated utilities have converged.  
+</p>
+<p>In the nextr trial from S<sub>0</sub> we perform the following 'random' set of actions: &uArr; &uArr; &rArr; &rArr; &dArr; &dArr; &rArr; &uArr;</p>
+<p><em>&pi;(3,1) = -1</em> <br>
+<em>&pi;(3,0) = -1.04</em> <br>
+<em>&pi;(2,0) = -1.08</em> <br>
+<em>&pi;(2,1) = -1.12</em> <br>
+<em>&pi;(2,2) = -1.16</em> <br>
+<em>&pi;(2,1) = -1.20</em> <br>
+<em>&pi;(2,0) = -1.24</em> <br>
+<em>&pi;(1,0) = -1.28</em> <br>
+<em>&pi;(0,0) = -1.32</em> <br></p>
+<p>This is a lot different from our first trial. This set would bring our previously estimated back down to zero or even below zero. Anyway, after a few more trials we might end up with something like this:</p>
+<table>
+<tr>
+<td>0.01</td><td>0.07</td><td>0.26</td><td>1</td>
+</tr>
+<tr>
+<td>-0.16</td><td style="background-color:black;"></td><td>-0.56</td><td>-1</td>
+</tr>
+<tr>
+<td>-0.28</td><td>-0.36</td><td>-0.61</td><td>-0.81</td>
+</tr>
+</table>
+<p>Thus the agent has found a policy &pi; for X:</p>
+<table>
+<tr>
+<td>&rArr;</td><td>&rArr;</td><td>&rArr;</td><td>1</td>
+</tr>
+<tr>
+<td>&uArr;</td><td style="background-color:black;"></td><td>&uArr;</td><td>-1</td>
+</tr>
+<tr>
+<td>&uArr;</td><td>&lArr;</td><td>&lArr;</td><td>&lArr;</td>
+</tr>
+</table>
+<h1>Function approximation</h1>
+<p>There is a different way to estimate the utility of a state. We use a function approximator (FA) to estimate utilities. The FA has a set of value functions that, combined, deliver an estimation of value of a certain state. </p>
+<p>This is particularly useful when the state-space becomes too large. The 'maze' problem converges only when all states have been visited, preferably a lot of times, the amount of trials that need to be run increases as the state-space grows.</p>
+<p>Let's look at X again. If we define 3 value functions with randomly initiated weights; <br>
+&fnof;<sub>0</sub>(S) = &phi; = 1, &theta;<sub>0</sub> = 0.1 <br>
+&fnof;<sub>1</sub>(S) = x, &theta;<sub>1</sub> = 0.5 <br>
+&fnof;<sub>2</sub>(S) = y, &theta;<sub>2</sub> = 0.2 <br>
+<br>
+&mu;(S) = sum of all f<sub>i</sub>(S)
+<br></p>
+<p>These functions give the following utilities if we multiply the outcome of the function in the corresponding state with it's weight and take the sum of the outcomes:</p>
+<table>
+<tr>
+<td>0.5</td><td>1.0</td><td>1.5</td><td>2</td>
+</tr>
+<tr>
+<td>0.3</td><td style="background-color:black;"></td><td>1.3</td><td>1.8</td>
+</tr>
+<tr>
+<td>0.1</td><td>0.6</td><td>1.1</td><td>1.6</td>
+</tr>
+</table>
+<p>Consider the following path:
+<em>&pi;(3,1) = -1</em> <br>
+<em>&pi;(3,0) = -1.04</em> <br> 
+<em>&pi;(2,0) = -1.08</em> <br>
+<em>&pi;(1,0) = -1.12</em> <br>
+<em>&pi;(0,0) = -1.16</em> <br></p>
+<p>We want to correct the weights of the various functions in the direction of observed utilities. </p>
+<p>We once again propagate back over the actions and use a learning parameter <em>&sigma; = 0.1</em>.</p>
+<p>&theta;<sub>i</sub> = &theta;<sub>i</sub> + &sigma; * ||&pi;(S)-&mu;(S)|| * &fnof;<sub>i</sub></p>
+<p>So we adjust all weights in the same direction, because whatever happened, the collective result of the valuefunctions <em>&mu;(S)</em> was off by <em>||&pi;(S)-&mu;(S)||</em>. <em>&pi;(S)</em> is the actual observed result. We multiply by <em>&fnof;<sub>i</sub></em>, so that we adjust weights according to the utility they contributed to the total estimate of the state. </p>
+<p>Simply put, if we look at S(1,3), the weight of the valuefunction that looks at the '3' (<em>&fnof;<sub>1</sub></em>) is adjusted more because it is multiplied by that 3. We assume they contributed harder to the fact that our estimate is off.</p>
+<p>Now, you need to remember that a valuefunction can be any function. If we believe that the difference between the X and the Y or the amount of actions that can be taken in a certain state is of importance, we add such a function, ie. <em>&fnof;<sub>3</sub>= ||x-y||</em>.</p>
+<p>But we won't.</p>
+<p><em>&fnof;<sub>0</sub></em> is a special case. As you have undoubtedly seen, it's value is always equal to 1, in whatever state. This is so, if there is one, a baseline to the utilities in all states can be determined. </p>
+<p>So, back to our path; <br> 
+<em>&pi;(3,1) = -1</em> <br>
+<em>&pi;(3,0) = -1.04</em> <br> 
+<em>&pi;(2,0) = -1.08</em> <br>
+<em>&pi;(1,0) = -1.12</em> <br>
+<em>&pi;(0,0) = -1.16</em> <br></p>
+<p>Given the current weights, we will start our corrections from the last state. <br>
+For &theta;<sub>0</sub> = 0.1 + 0.1 * ((-1) - 1.8) * 1 = 0.1 - 0.28 * 1 = -0.18<br>
+For &theta;<sub>1</sub> = 0.5 + 0.1 * ((-1) - 1.8) * 3 = 0.5 - 0.28 * 3 = -0.34<br>
+For &theta;<sub>2</sub> = 0.2 + 0.1 * ((-1) - 1.8) * 1 = 0.2 - 0.28 * 1 = -0.08<br></p>
+<p>The new weights immediately result in the following scenario:</p>
+<table>
+<tr>
+<td>-0.34</td><td>-0.68</td><td>-1.02</td><td>-1.36</td>
+</tr>
+<tr>
+<td>-0.26</td><td style="background-color:black;"></td><td>-0.94</td><td>-1.28</td>
+</tr>
+<tr>
+<td>-0.18</td><td>-0.52</td><td>-0.86</td><td>-1.20</td>
+</tr>
+</table>
+<p>So now we can evaluate <em>&pi;(3,0) = -1.04</em> against the NEW weights! Which means the difference should be smaller. In this case, after every trial, the first correction will be largest, afterwards there won't be much we want to do. That is because our learning rate is relatively high. </p>
+<p>This example is nice because it shows how we reached a tedious situation. If you follow the exploitation path, you'll be running around S<sub>0</sub> for a long time. It will take some time for the agent to get out of this situation.</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
