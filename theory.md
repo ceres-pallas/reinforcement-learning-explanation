@@ -174,31 +174,37 @@ But we won't.
 
 *&fnof;<sub>0</sub>* is a special case. As you have undoubtedly seen, it's value is always equal to 1, in whatever state. This is so, if there is one, a baseline to the utilities in all states can be determined. 
 
-So, back to our path; 
+So, back to our path; <br> 
 *&pi;(3,1) = -1* <br>
 *&pi;(3,0) = -1.04* <br> 
 *&pi;(2,0) = -1.08* <br>
 *&pi;(1,0) = -1.12* <br>
 *&pi;(0,0) = -1.16* <br>
 
-Given the current weights, we will start our corrections from the last state. 
-For &theta;<sub>0</sub>: 0.1 + 0.1 * || 1.8 - 1 || * 1 = 0.02<br>
-For &theta;<sub>1</sub>: 0.5 + 0.1 * || 1.8 - 1 || * 3 = 0.26<br>
-For &theta;<sub>2</sub>: 0.2 + 0.1 * || 1.8 - 1 || * 1 = 0.12<br>
+Given the current weights, we will start our corrections from the last state. <br>
+For &theta;<sub>0</sub> = 0.1 + 0.1 * ((-1) - 1.8) * 1 = 0.1 - 0.28 * 1 = -0.18<br>
+For &theta;<sub>1</sub> = 0.5 + 0.1 * ((-1) - 1.8) * 3 = 0.5 - 0.28 * 3 = -0.34<br>
+For &theta;<sub>2</sub> = 0.2 + 0.1 * ((-1) - 1.8) * 1 = 0.2 - 0.28 * 1 = -0.08<br>
 
 The new weights immediately result in the following scenario:
 
 <table>
 <tr>
-<td>0.26</td><td>0.52</td><td>0.78</td><td>1.04</td>
+<td>-0.34</td><td>-0.68</td><td>-1.02</td><td>-1.36</td>
 </tr>
 <tr>
-<td>0.14</td><td style="background-color:black;"></td><td>0.66</td><td>0.92</td>
+<td>-0.26</td><td style="background-color:black;"></td><td>-0.94</td><td>-1.28</td>
 </tr>
 <tr>
-<td>0.02</td><td>0.28</td><td>0.54</td><td>0.80</td>
+<td>-0.18</td><td>-0.52</td><td>-0.86</td><td>-1.20</td>
 </tr>
 </table>
+
+So now we can evaluate *&pi;(3,0) = -1.04* against the NEW weights! Which means the difference should be smaller. In this case, after every trial, the first correction will be largest, afterwards there won't be much we want to do. That is because our learning rate is relatively high. 
+
+This example is nice because it shows how we reached a tedious situation. If you follow the exploitation path, you'll be running around S<sub>0</sub> for a long time. It will take some time for the agent to get out of this situation.
+
+
 
 
 
